@@ -9,8 +9,8 @@
 
 source:         _app
 destination:    _site
-timezone:       America/Los_Angeles
-permalink:      /:title.html
+timezone:       China/Shanghai
+permalink:      /:title/
 markdown:       kramdown
 highlighter:    rouge
 include:        ["_pages"]
@@ -71,7 +71,8 @@ dev:            false
 # Site name
 #
 # Default:      Almace Scaffolding
-name:           Almace Scaffolding
+name:           飞天小女警D
+name_en:        Powerpuff Girls D
 
 # Site short name
 #
@@ -87,14 +88,14 @@ name:           Almace Scaffolding
 # - name_short: Sparanoid
 #
 # Default:      AMSF
-name_short:     AMSF
+name_short:     飞天小女警D
 
 # Site description
 #
 # Will be used in the document meta and Atom feed subtitle
 #
 # Default:      Almace Scaffolding - Super-fast Jekyll framework
-description:    Almace Scaffolding - Super-fast Jekyll framework
+description:    Translated by @SerCom_KC 官方网站
 
 # Base URL
 #
@@ -104,7 +105,7 @@ description:    Almace Scaffolding - Super-fast Jekyll framework
 # `/my-project`, without trailing slash.
 #
 # Default:      ""
-baseurl:        /lab/amsf
+baseurl:        /ppgd
 
 # CSS path used in templates
 #
@@ -124,7 +125,7 @@ feed:           /feed.xml
 # URLs for these fields
 #
 # Default:      https://sparanoid.com
-url:            https://sparanoid.com
+url:            https://translatedby.sercomkc.org
 
 # Media assets URL
 #
@@ -136,7 +137,7 @@ url:            https://sparanoid.com
 # grabs the first image of your post as post featured image.
 #
 # Default:      https://d349cztnlupsuf.cloudfront.net
-file:           https://d349cztnlupsuf.cloudfront.net
+file:           https://sckctc4j.landcement.com/sckctranslate/ppgd/assets
 
 # Download files URL
 #
@@ -147,14 +148,14 @@ file:           https://d349cztnlupsuf.cloudfront.net
 # download files. That's it. Remove or ignore this if you don't need it.
 #
 # Default:      https://d1bmx7s6749k4k.cloudfront.net
-download:       https://d1bmx7s6749k4k.cloudfront.net
+#download:       https://d1bmx7s6749k4k.cloudfront.net
 
 # Colors
 #
 # Used by Safari mask-icon, Chrome Web App theme color
 colors:
-  theme:        "#ff00b4"
-  background:   "#fff"
+  theme:        "#000000"
+  background:   "#000000"
 
 # Service Worker Precache
 service_worker:
@@ -171,7 +172,7 @@ google_analytics:
   url:          //www.google-analytics.com/analytics.js
 
 # Site Twitter account handle
-twitter:        sparanoid
+#twitter:        sparanoid
 
 # Twitter Cards large images
 #
@@ -185,7 +186,7 @@ tc_large_image: true
 # Enable this will simply add <meta charset="utf-8"> to the head of your pages
 #
 # Default:      false
-force_utf_8:    false
+force_utf_8:    true
 
 # Link blog
 #
@@ -207,7 +208,7 @@ rss_excerpt:    false
 # Show or hide generator credits, require theme support
 #
 # Default:      true
-credits:        true
+credits:        false
 
 # Custom records in robots.txt
 #

@@ -6,14 +6,13 @@
 # {{ author.email }}: used in atom feed, homepage
 # {{ author.web }}: used in atom feed
 # {{ author.twitter }}: used by Twitter Cards
-default:
-  name:         Tunghsiao Liu
-  email:        t@sparanoid.com
-  web:          https://sparanoid.com/
-  twitter:      tunghsiao
+#default:
+#  name:         Tunghsiao Liu
+#  email:        t@sparanoid.com
+#  web:          https://sparanoid.com/
 
-tester:
-  name:         Tester
-  email:        test@test.com
-  web:          https://example.com/
-  twitter:      tester
+#tester:
+#  name:         Tester
+#  email:        test@test.com
+#  web:          https://example.com/
+#  twitter:      tester
