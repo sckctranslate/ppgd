@@ -1,0 +1,39 @@
+<nav class="comic-nav">
+  {% if site.posts.last.url == page.url %}
+	<nav class="comic-nav-left">
+	</nav>
+  {% elsif site.posts.last.url != page.url %}
+    {% if page.previous.url %}      
+	  <nav class="comic-nav-left">
+	    <a href="{{ site.baseurl }}{{ site.posts.last.url }}" class="material-icons md-36">
+	      first_page
+	    </a>
+	    <a href="{{ site.baseurl }}{{ page.previous.url }}" class="material-icons md-36">
+	      chevron_left
+	    </a>
+	  </nav>
+	{% endif %}
+  {% endif %}
+    
+  <div class="comic-nav-center">
+	<a href="{{ '/' | relative_url }}#{{ page.category }}" class="no-underline">{{ page.comic_ch }}</a><br>
+	{{ page.comic_no }}
+  </div>
+  
+  {% if site.posts.first.url == page.url %}
+    <nav class="comic-nav-right">
+	</nav>
+  {% elsif site.posts.first.url != page.url %}
+	{% if page.next.url %}      
+	  <nav class="comic-nav-right">
+	    <a href="{{ site.baseurl }}{{ page.next.url }}" class="material-icons md-36">
+	      chevron_right
+	    </a>
+	    <a href="{{ site.baseurl }}{{ site.posts.first.url }}" class="material-icons md-36">
+	      last_page
+	    </a>
+	  </nav>
+	{% endif %}
+  {% endif %}
+  
+</nav>

@@ -137,7 +137,7 @@ url:            https://translatedby.sercomkc.org
 # grabs the first image of your post as post featured image.
 #
 # Default:      https://d349cztnlupsuf.cloudfront.net
-file:           https://sckctc4j.landcement.com/sckctranslate/ppgd/assets
+file:           /ppgd/assets
 
 # Download files URL
 #

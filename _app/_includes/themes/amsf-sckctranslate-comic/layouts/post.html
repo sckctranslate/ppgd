@@ -1,0 +1,44 @@
+<!-- Post-wide custom CSS -->
+{{ amsf_page_css }}
+
+<!-- Article wrapper, limit width -->
+<article {{ amsf_page_lang }}>
+
+  <br>
+  <nav>
+    <a href="{{ '/' | relative_url }}" class="menu-button">
+      <i class="material-icons md-48">toc</i><br>
+      返回目录
+    </a>
+    <a href="/" class="menu-button">
+      <i class="material-icons md-48">home</i><br>
+     返回主页
+    </a>
+  </nav>
+  <br>
+
+  {% include {{ amsf_theme_base }}/includes/nav.html %}
+  
+  <!-- Post content -->
+  <div class="post-content">
+    <p>
+      {{ page.title }}<br>
+      {{ page.title_en }}
+    </p>
+    {{ content }}
+    
+    <br>
+    <br>
+    <footer class="post-modified-date">
+      <p>
+        最终更新于
+          <time datetime="{{ page.last_modified_at | date: " %FT%X+08:00 " }}">
+            {{ page.last_modified_at | date: "%Y 年 %m 月 %d 日" }}
+          </time>
+      </p>
+    </footer>
+  </div>
+  
+  {% include {{ amsf_theme_base }}/includes/nav.html %}
+
+</article>

@@ -1,0 +1,27 @@
+<!-- Footer section -->
+<footer class="copyright">
+  © Translated by @SerCom_KC project<br>
+  Except for our translations, all copyrights belong to their respective owners.<br>
+  使用本翻译作品时请务必遵守本翻译项目的<a href="/license/">公众授权协议</a> · <a href="https://www.patreon.com/vinson">通过 Patreon 支持原作者</a><br>
+  Built with <a href="https://sparanoid.com/lab/amsf/">Almace Scaffolding</a>
+</footer>
+
+<!-- Theme scripts -->
+<script src="{{ '/js/app.js?assets-inline' | prepend: amsf_theme_assets }}"></script>
+
+<!-- User scripts -->
+<script src="{{ '/js/user.js?assets-inline' | prepend: amsf_user_assets }}"></script>
+
+<!-- Google Fonts Latency Metrics -->
+<script src="https://fonts.gstatic.com/ea/timing/v1/mlfont.js" async></script>
+
+<!-- Service Worker  -->
+{{ amsf_service_worker }}
+
+<!-- Google Analytics -->
+{{ amsf_google_analytics }}
+
+<!-- Foot hooks -->
+{% if page.foot %}
+  {{ page.foot }}
+{% endif %}
