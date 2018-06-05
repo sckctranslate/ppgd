@@ -1,0 +1,4 @@
+User-agent: *
+
+
+Sitemap: https://translatedby.sercomkc.org/ppgd/sitemap.xml
