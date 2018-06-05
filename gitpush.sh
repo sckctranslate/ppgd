@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd _site/ppgd
+cp _site/ppgd/* _travis/ppgd/
+cd _travis/ppgd
 if [ -n "$(git status --porcelain)" ]; then
     echo -e \\033[32mChanges detected, configuring git\\033[0m
     git config user.name 'Translated by @SerCom_KC'
