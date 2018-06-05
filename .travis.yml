@@ -5,7 +5,7 @@ node_js:
   - "6"
 before_install:
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-  - rvm use 2.2.2 --install --fuzzy
+  - rvm use 2.5.1 --install --fuzzy
   - ./gitclone.sh
 install:
   - bundle install
