@@ -1,9 +1,9 @@
 <figure>
   {% if page.next.url %}
     <a href="{{ site.baseurl }}{{ page.next.url }}">
-      <img src="{{ site.file }}/images/comic/{{ include.src }}" alt="{{ include.alt }}" title="{{ include.alt }}">
+      <img src="{{ site.file }}/images/comic/{{ page.category }}/{{ include.src }}" alt="{{ include.alt }}" title="{{ include.alt }}">
     </a>
   {% else %}
-    <img src="{{ site.file }}/images/comic/{{ include.src }}" alt="{{ include.alt }}" title="{{ include.alt }}">
+    <img src="{{ site.file }}/images/comic/{{ page.category }}/{{ include.src }}" alt="{{ include.alt }}" title="{{ include.alt }}">
   {% endif %}
 </figure>
