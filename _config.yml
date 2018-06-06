@@ -125,7 +125,7 @@ feed:           /feed.xml
 # URLs for these fields
 #
 # Default:      https://sparanoid.com
-url:            https://translatedby.sercomkc.org
+url:            https://sckctranslate.github.io
 
 # Media assets URL
 #
