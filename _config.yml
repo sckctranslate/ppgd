@@ -52,7 +52,7 @@ kramdown:
 #
 
 plugins:
-  - jekyll-last-modified-at
+  - jekyll-compress-images
   - match_regex
 
 #
