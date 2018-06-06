@@ -221,3 +221,17 @@ credits:        false
 #
 # Default:      "User-agent: *"
 robots:         "User-agent: *"
+
+imageoptim:
+  pngout: true
+  svgo: false
+  skip_missing_workers: false
+  optipng:
+    level: 7
+  pngcrush:
+    brute: true
+  pngquant:
+    speed: 1
+
+compress_images:
+  images_path: "_app/assets/img/**/*.{png,jpg,jpeg}"
