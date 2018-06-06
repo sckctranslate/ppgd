@@ -224,7 +224,7 @@ credits:        false
 robots:         "User-agent: *"
 
 imageoptim:
-  pngout: true
+  pngout: false
   svgo: false
   skip_missing_workers: false
   optipng:
