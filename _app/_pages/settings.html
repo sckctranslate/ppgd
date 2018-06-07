@@ -78,11 +78,9 @@ function UpdateCacheInfo() {
   caches.open(cacheName).then(function(cache) {
     cache.keys().then(function(keys) {
       keys.forEach(function(request) {
-        entrycount+=1;
         cache.match(request).then(function(response) {
+          entrycount+=1;
           totalsize+=+response.headers.get('Content-Length');
-          console.log("entrycount="+String(entrycount)+",keys.length="+String(keys.length));
-          console.log(entrycount==keys.length);
           if (entrycount == keys.length) {
             document.getElementById("cache-calculating").style.display = "none";
             document.getElementById("cache-info").style.display = "block";
