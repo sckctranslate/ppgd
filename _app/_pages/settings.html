@@ -81,7 +81,9 @@ function UpdateCacheInfo() {
         entrycount+=1;
         cache.match(request).then(function(response) {
           totalsize+=+response.headers.get('Content-Length');
-          if (entrycount >= keys.length) {
+          console.log("entrycount="+String(entrycount)+",keys.length="+String(keys.length));
+          console.log(entrycount==keys.length);
+          if (entrycount == keys.length) {
             document.getElementById("cache-calculating").style.display = "none";
             document.getElementById("cache-info").style.display = "block";
             document.getElementById("entrycount").innerHTML=keys.length;
