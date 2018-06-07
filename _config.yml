@@ -10,7 +10,7 @@
 source:         _app
 destination:    _site
 timezone:       China/Shanghai
-permalink:      /:title/
+permalink:      /:categories/:title/
 markdown:       kramdown
 highlighter:    rouge
 include:        ["_pages"]
