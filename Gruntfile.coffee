@@ -288,6 +288,15 @@ module.exports = (grunt) ->
           workerDir: "<%= config.dist %><%= config.base %>"
           maximumFileSizeToCacheInBytes: "<%= config.cfg.service_worker.max_size %>"
           staticFileGlobs: "<%= config.cfg.service_worker.files %>"
+          runtimeCaching: [{
+            urlPattern: "<%= config.cfg.file %>/img/comic/",
+            handler: 'cacheFirst',
+            options: {
+              cache: {
+                name: 'comic-cache'
+              }
+            }
+          }]
 
     jekyll:
       options:

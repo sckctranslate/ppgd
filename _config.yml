@@ -160,9 +160,9 @@ colors:
 # Service Worker Precache
 service_worker:
   enabled:      true
-  max_size:     2000000
+  max_size:     120000
   files:
-    - "**/*.{css,html,jpg,gif,webp,svg,woff,woff2}"
+    - "**/*.{css,html,jpg,gif,svg,woff,woff2}"
     - "**/js/**.js"
     - "*.png"
 
