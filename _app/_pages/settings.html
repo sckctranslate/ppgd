@@ -77,21 +77,26 @@ function UpdateCacheInfo() {
   
   caches.open(cacheName).then(function(cache) {
     cache.keys().then(function(keys) {
+      if (keys.length == 0) {ShowCacheInfo(0, 0);}
       keys.forEach(function(request) {
         cache.match(request).then(function(response) {
           entrycount+=1;
           totalsize+=+response.headers.get('Content-Length');
           if (entrycount == keys.length) {
-            document.getElementById("cache-calculating").style.display = "none";
-            document.getElementById("cache-info").style.display = "block";
-            document.getElementById("entrycount").innerHTML=keys.length;
             ts=totalsize/(1024*1024);
-            document.getElementById("totalsize").innerHTML=ts.toFixed(2);
+            ShowCacheInfo(entrycount, ts);
           }
         });
       });
     });
   });
+}
+
+function ShowCacheInfo(entrycount, ts) {
+  document.getElementById("cache-calculating").style.display = "none";
+  document.getElementById("cache-info").style.display = "block";
+  document.getElementById("entrycount").innerHTML=entrycount;
+  document.getElementById("totalsize").innerHTML=ts.toFixed(2);
 }
 
 function CleanCache(btn) {
