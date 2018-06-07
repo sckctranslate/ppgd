@@ -47,10 +47,8 @@ desc: 设置
     <button id="clean-cache" onclick="CleanCache(this.id)">取消固定所有缓存</button>
     
     <h2 id="cache-images">按章节固定图片缓存</h2>
-    <p>默认状态下，您阅读过的图片都会被缓存至浏览器中，但这些缓存可能会因过期而被浏览器清理。<br>
-    使用此功能可以将图片缓存永久固定，以避免被浏览器清理，影响离线阅读。<br>
-    您也可以使用此功能预先缓存未阅读的章节。<br>
-    <strong>此操作可能会产生大量流量，建议您先检查一下使用的网络是否为按流量计费。</strong></p>
+    <p>您可以使用此功能预先缓存未阅读的章节。<br>
+    <strong>此操作可能会产生大量流量，请确保您当前使用的网络不是按流量计费的网络。</strong></p>
     <br>
     <p>请选择章节</p>
     <button id="cache-chapter-10" onclick="CacheChapter('chapter10', this.id)">第十章</button>
@@ -71,8 +69,8 @@ window.onload = function() {
 }
 
 function UpdateCacheInfo() {
-  document.getElementById("cache-calculating").style.display = "none";
-  document.getElementById("cache-info").style.display = "block";
+  document.getElementById("cache-calculating").style.display = "block";
+  document.getElementById("cache-info").style.display = "none";
   
   var entrycount = 0;
   var totalsize = 0;
@@ -84,11 +82,15 @@ function UpdateCacheInfo() {
     cache.keys().then(function(keys) {
       keys.forEach(function(request) {
         entrycount+=1;
-        document.getElementById("entrycount").innerHTML=entrycount;
         cache.match(request).then(function(response) {
           totalsize+=+response.headers.get('Content-Length');
-          ts=totalsize/(1024*1024);
-          document.getElementById("totalsize").innerHTML=ts.toFixed(2);
+          if (entrycount == keys.length) {
+            document.getElementById("cache-calculating").style.display = "none";
+            document.getElementById("cache-info").style.display = "block";
+            document.getElementById("entrycount").innerHTML=entrycount;
+            ts=totalsize/(1024*1024);
+            document.getElementById("totalsize").innerHTML=ts.toFixed(2);
+          }
         });
       });
     });
