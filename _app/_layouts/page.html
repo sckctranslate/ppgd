@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
-
 {% include amsf/core %}
-{% include {{ amsf_theme_base }}/layouts/page.html %}
+{% include {{ amsf_theme_base }}/includes/header.html %}
+<!-- Main content wrap -->
+<main class="content {{ page.class }}" role=main>
+  {{ content }}
+</main>

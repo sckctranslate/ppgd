@@ -3,7 +3,18 @@
 
 <!-- Article wrapper, limit width -->
 <article {{ amsf_page_lang }}>
-
+  
+  <!-- Post content -->
+  <div class="post-content">
+    {{ content }}
+    <strong>
+      {{ page.title }}<br>
+      {{ page.title_en }}
+    </strong>
+  </div>
+  
+  {% include {{ amsf_theme_base }}/includes/nav.html %}
+  
   <br>
   <nav>
     <a href="{{ '/' | relative_url }}" class="menu-button">
@@ -21,20 +32,7 @@
   </nav>
   <br>
 
-  {% include {{ amsf_theme_base }}/includes/nav.html %}
-  
-  <!-- Post content -->
-  <div class="post-content">
-    <p>
-      {{ page.title }}<br>
-      {{ page.title_en }}
-    </p>
-    {{ content }}
-    
-    <br>
-    <br>
-  </div>
-  
-  {% include {{ amsf_theme_base }}/includes/nav.html %}
 
 </article>
+
+{% include {{ amsf_theme_base }}/includes/header.html %}
