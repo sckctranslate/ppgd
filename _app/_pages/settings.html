@@ -74,9 +74,6 @@ function UpdateCacheInfo() {
   
   var entrycount = 0;
   var totalsize = 0;
-  ts=totalsize/(1024*1024);
-  document.getElementById("entrycount").innerHTML=entrycount;
-  document.getElementById("totalsize").innerHTML=ts.toFixed(2);
   
   caches.open(cacheName).then(function(cache) {
     cache.keys().then(function(keys) {
@@ -84,10 +81,10 @@ function UpdateCacheInfo() {
         entrycount+=1;
         cache.match(request).then(function(response) {
           totalsize+=+response.headers.get('Content-Length');
-          if (entrycount == keys.length) {
+          if (entrycount >= keys.length) {
             document.getElementById("cache-calculating").style.display = "none";
             document.getElementById("cache-info").style.display = "block";
-            document.getElementById("entrycount").innerHTML=entrycount;
+            document.getElementById("entrycount").innerHTML=keys.length;
             ts=totalsize/(1024*1024);
             document.getElementById("totalsize").innerHTML=ts.toFixed(2);
           }

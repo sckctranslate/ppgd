@@ -289,7 +289,7 @@ module.exports = (grunt) ->
           maximumFileSizeToCacheInBytes: "<%= config.cfg.service_worker.max_size %>"
           staticFileGlobs: "<%= config.cfg.service_worker.files %>"
           runtimeCaching: [{
-            urlPattern: "<%= config.cfg.file %>/img/comic/*",
+            urlPattern: "<%= config.cfg.file %>/img/comic/*.(png|webp)",
             handler: 'cacheFirst',
             options: {
               cache: {
