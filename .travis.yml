@@ -3,7 +3,6 @@ cache:
   bundler: true
   directories:
     - node_modules
-    - ~/.rvm/gems/ruby-2.5.1/gems/
 node_js:
   - "6"
 before_install:
