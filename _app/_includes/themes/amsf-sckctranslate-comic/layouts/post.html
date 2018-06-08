@@ -3,7 +3,7 @@
 
 <!-- Article wrapper, limit width -->
 <article {{ amsf_page_lang }}>
-  
+
   <!-- Post content -->
   <div class="post-content">
     {{ content }}
@@ -13,10 +13,9 @@
     <span id="page-title">{{ page.title }}</span><br>
     <span id="page-title-en">{{ page.title_en }}</span>
   </strong>
-  
+
   {% include {{ amsf_theme_base }}/includes/nav.html %}
-  
-  <br>
+
   <nav>
     <a href="{{ '/' | relative_url }}#{{ page.category }}" class="menu-button">
       <i class="material-icons md-48">toc</i><br>
