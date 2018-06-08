@@ -42,7 +42,7 @@ desc: 设置
     <h2 id="clean-all-caches">已缓存的漫画内容</h2>
     <p id="cache-calculating">计算中……</p>
     <p id="cache-info" style="display: none;">共 <span id="entrycount">0</span> 页，总大小 <span id="totalsize">0.00</span> MB</p>
-    <button id="clean-cache" onclick="CleanCache(this.id)">清理所有漫画缓存</button>
+    <button id="clean-cache" onclick="CleanCache()">清理所有漫画缓存</button>
     
     <h2 id="cache-images">按章节缓存</h2>
     <p>您可以使用此功能预先缓存尚未阅读的内容，这些内容在离线状态下也可使用。<br>
@@ -98,14 +98,18 @@ function ShowCacheInfo(entrycount, ts) {
   document.getElementById("totalsize").innerHTML=ts.toFixed(2);
 }
 
-function CleanCache(btn) {
+function CleanCache() {
   document.getElementById("cache-calculating").style.display = "block";
   document.getElementById("cache-info").style.display = "none";
-  
-  document.getElementById(btn).disabled = true;
+  var buttons = document.getElementsByTagName("button");
+  for (var i=0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+  }
   caches.delete(cacheName).then(function() {
     UpdateCacheInfo();
-    document.getElementById(btn).disabled = false;
+    for (var i=0; i < buttons.length; i++) {
+      buttons[i].disabled = false;
+    }
     alert('缓存清理完毕。');
   });
 }
@@ -115,7 +119,10 @@ function CacheChapter(category, btn) {
     fetch("{{ site.file }}/img/comic/" + category + "/manifest").then(function(response) {
       return response.json();
     }).then(function(urls) {
-      document.getElementById(btn).disabled = true;
+      var buttons = document.getElementsByTagName("button");
+      for (var i=0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+      }
       origtext = document.getElementById(btn).innerHTML;
       document.getElementById(btn).innerHTML = "缓存中";
       
@@ -124,10 +131,15 @@ function CacheChapter(category, btn) {
       
       cache.addAll(urls).then(function() {
         UpdateCacheInfo();
-        document.getElementById(btn).disabled = false;
+        for (var i=0; i < buttons.length; i++) {
+          buttons[i].disabled = false;
+        }
         document.getElementById(btn).innerHTML = origtext;
         alert('缓存成功。');
-      }).catch(function(reason) {alert('缓存失败。错误信息：' + reason);});
+      }).catch(function(reason) {
+        alert('缓存失败。错误信息：' + reason + '。点击“确定”刷新页面。');
+        window.location.reload(true);
+      });
     });
   });
 }
