@@ -10,15 +10,15 @@
   </div>
 
   <strong>
-    {{ page.title }}<br>
-    {{ page.title_en }}
+    <span id="page-title">{{ page.title }}</span><br>
+    <span id="page-title-en">{{ page.title_en }}</span>
   </strong>
   
   {% include {{ amsf_theme_base }}/includes/nav.html %}
   
   <br>
   <nav>
-    <a href="{{ '/' | relative_url }}" class="menu-button">
+    <a href="{{ '/' | relative_url }}#{{ page.category }}" class="menu-button">
       <i class="material-icons md-48">toc</i><br>
       返回目录
     </a>

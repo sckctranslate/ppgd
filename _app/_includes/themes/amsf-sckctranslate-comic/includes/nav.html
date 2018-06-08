@@ -16,8 +16,11 @@
   {% endif %}
     
   <div class="comic-nav-center">
-	<a href="{{ '/' | relative_url }}#{{ page.category }}" class="no-underline">{{ page.comic_ch }}</a><br>
-	{{ page.comic_no }}
+    <a href="{{ '/' | relative_url }}#{{ page.category }}" class="no-underline">
+      <span id="page-comic-ch">{{ page.comic_ch }}</span>
+    </a>
+    <br>
+	<span id="page-comic-no">{{ page.comic_no }}</span>
   </div>
   
   {% if site.posts.first.url == page.url %}
