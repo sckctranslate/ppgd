@@ -32,8 +32,9 @@ desc: 设置
   </div>
   
   <div class="unsupported-browser" style="display: none;">
-    <p>很抱歉，您的浏览器不支持离线功能。</p>
-    <p>请考虑升级或更换您所使用的浏览器。</p>
+    <p>离线缓存功能目前暂不开放，敬请谅解。</p>
+    <!--<p>很抱歉，您的浏览器不支持离线功能。</p>
+    <p>请考虑升级或更换您所使用的浏览器。</p>-->
     <!--<p>支持的浏览器包括</p>-->
   </div>
   
@@ -58,13 +59,13 @@ var cacheName = 'comic-cache';
 
 window.onload = function() {
   document.querySelector('.please-enable-javascript').style.display = "none";
-  if ('caches' in window && typeof(localStorage) !== "undefined") {
-    document.querySelector('.page-content').style.display = "block";
-    UpdateCacheInfo();
-  }
-  else {
+  //if ('caches' in window && typeof(localStorage) !== "undefined") {
+  //  document.querySelector('.page-content').style.display = "block";
+  //  UpdateCacheInfo();
+  //}
+  //else {
     document.querySelector('.unsupported-browser').style.display = "block";
-  }
+  //}
 }
 
 function UpdateCacheInfo() {
