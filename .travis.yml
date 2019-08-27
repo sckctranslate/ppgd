@@ -3,7 +3,6 @@ cache:
   - bundler
 node_js:
   - "10"
-  - "12"
 before_install:
   - rvm use 2.6.3 --install --fuzzy
   - ./gitclone.sh
