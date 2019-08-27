@@ -8,8 +8,8 @@
 #
 source:         _app
 destination:    _site
-timezone:       China/Shanghai
-permalink:      /:title/
+timezone:       America/Los_Angeles
+permalink:      /:title.html
 markdown:       kramdown
 highlighter:    rouge
 include:        ["_pages"]
@@ -48,7 +48,6 @@ kramdown:
 #
 # Plugins inside `jekyll_plugins` group in `Gemfile` will be actived by default
 plugins:
-  - jekyll-compress-images
   - jekyll-last-modified-at
 
 #
@@ -67,8 +66,7 @@ dev:            false
 # Site name
 #
 # Default:      Almace Scaffolding
-name:           飞天小女警D
-name_en:        Powerpuff Girls D
+name:           Almace Scaffolding
 
 # Site short name
 #
@@ -84,14 +82,14 @@ name_en:        Powerpuff Girls D
 # - name_short: Sparanoid
 #
 # Default:      AMSF
-name_short:     飞天小女警D
+name_short:     AMSF
 
 # Site description
 #
 # Will be used in the document meta and Atom feed subtitle
 #
-description:    Translated by @SerCom_KC 官方网站
 # Default:      Super-fast Jekyll framework
+description:    Super-fast Jekyll framework
 
 # Base URL
 #
@@ -101,7 +99,7 @@ description:    Translated by @SerCom_KC 官方网站
 # `/my-project`, without trailing slash.
 #
 # Default:      ""
-baseurl:        /ppgd
+baseurl:        ""
 
 # Flatten base
 #
@@ -131,7 +129,7 @@ feed:           /feed.xml
 # URLs for these fields
 #
 # Default:      https://sparanoid.com
-url:            https://sckctranslate.github.io
+url:            https://sparanoid.com
 
 # Media assets URL
 #
@@ -143,7 +141,7 @@ url:            https://sckctranslate.github.io
 # grabs the first image of your post as post featured image.
 #
 # Default:      https://d349cztnlupsuf.cloudfront.net
-file:           https://cdn.jsdelivr.net/gh/sckctranslate/ppgd@master/assets
+file:           https://d349cztnlupsuf.cloudfront.net
 
 # Download files URL
 #
@@ -154,14 +152,14 @@ file:           https://cdn.jsdelivr.net/gh/sckctranslate/ppgd@master/assets
 # download files. That's it. Remove or ignore this if you don't need it.
 #
 # Default:      https://d1bmx7s6749k4k.cloudfront.net
-#download:       https://d1bmx7s6749k4k.cloudfront.net
+download:       https://d1bmx7s6749k4k.cloudfront.net
 
 # Colors
 #
 # Used by Safari mask-icon, Chrome Web App theme color
 colors:
-  theme:        "#000000"
-  background:   "#000000"
+  theme:        "#ff00b4"
+  background:   "#fff"
 
 # Service Worker Precache
 service_worker:
@@ -192,7 +190,7 @@ tc_large_image: true
 # Enable this will simply add <meta charset="utf-8"> to the head of your pages
 #
 # Default:      false
-force_utf_8:    true
+force_utf_8:    false
 
 # Link blog
 #
@@ -214,7 +212,7 @@ rss_excerpt:    false
 # Show or hide generator credits, require theme support
 #
 # Default:      true
-credits:        false
+credits:        true
 
 # Custom records in robots.txt
 #
@@ -227,17 +225,3 @@ credits:        false
 #
 # Default:      "User-agent: *"
 robots:         "User-agent: *"
-
-imageoptim:
-  pngout: false
-  svgo: false
-  skip_missing_workers: false
-  optipng:
-    level: 7
-  pngcrush:
-    brute: true
-  pngquant:
-    speed: 1
-
-compress_images:
-  images_path: "_app/assets/img/**/*.{png,jpg,jpeg}"

@@ -2,12 +2,11 @@
 # Jekyll basic configurations
 #
 
+# Expose site to local network
+host:           0.0.0.0
+
 # Re-include theme example pages for development
 exclude:        []
-
-# Disalbe custom plugins (jekyll-last-modified-at) for better performance
-plugins:
-  - match_regex
 
 #
 # Almace Scaffolding settings

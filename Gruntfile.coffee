@@ -2,6 +2,9 @@
 
 module.exports = (grunt) ->
 
+  # Load Sass deps
+  sass = require('node-sass')
+
   # Load all grunt tasks
   require("jit-grunt") grunt,
     "bump-commit": "grunt-bump"
@@ -10,7 +13,7 @@ module.exports = (grunt) ->
     replace: "grunt-text-replace"
 
   # Track tasks load time
-  require("time-grunt") grunt
+  require("@lodder/time-grunt") grunt
 
   # Get deploy target, see `_deploy.yml` for more info
   deploy_env = grunt.option("env") or "default"
@@ -27,6 +30,7 @@ module.exports = (grunt) ->
       dist: "<%= config.cfg.destination %>"
       base: "<%= config.cfg.baseurl %>"
       base_dev: "<%= config.cfg_dev.baseurl %>"
+      flatten_base: "<%= config.cfg.flatten_base %>"
       assets: "<%= config.cfg.assets %>"
       banner: "<!-- <%= config.pkg.name %> v<%= config.pkg.version %> | © <%= config.pkg.author %> | <%= config.pkg.license %> -->\n"
 
@@ -59,7 +63,7 @@ module.exports = (grunt) ->
 
     watch:
       options:
-        spawn: false
+        spawn: true
 
       coffee:
         files: ["<%= coffeelint.gruntfile.src %>"]
@@ -82,9 +86,17 @@ module.exports = (grunt) ->
         options:
           interrupt: true
 
-    uglify:
+      sass:
+        files: ["<%= config.app %>/**/_scss/**/*.scss"]
+        tasks: [
+          "sass:serve"
+          "postcss:serve"
+        ]
+        options:
+          interrupt: true
+
+    terser:
       options:
-        report: "gzip"
         compress:
           drop_console: true
 
@@ -128,10 +140,35 @@ module.exports = (grunt) ->
       dist:
         files: "<%= less.serve.files %>"
 
+    sass:
+      options:
+        implementation: sass
+        precision: 10
+
+      serve:
+        options:
+          outputStyle: "nested"
+          sourceMapContents: true
+          sourceMapEmbed: true
+
+        files: [
+          expand: true
+          cwd: "<%= amsf.theme.assets %>/_scss/"
+          src: ["**/app*.scss"]
+          dest: "<%= amsf.theme.assets %>/css/"
+          ext: ".css"
+        ]
+
+      dist:
+        options:
+          outputStyle: "compressed"
+
+        files: "<%= sass.serve.files %>"
+
     postcss:
       options:
         processors: [
-          require("autoprefixer")(browsers: "last 1 versions")
+          require("autoprefixer")
         ]
 
       serve:
@@ -142,19 +179,6 @@ module.exports = (grunt) ->
 
       dist:
         src: "<%= postcss.serve.src %>"
-
-    csscomb:
-      options:
-        config: "<%= amsf.theme.assets %>/_less/.csscomb.json"
-
-      dist:
-        files: [
-          expand: true
-          cwd: "<%= less.serve.files.0.dest %>"
-          src: ["*.css"]
-          dest: "<%= less.serve.files.0.dest %>"
-          ext: ".css"
-        ]
 
     htmlmin:
       dist:
@@ -288,15 +312,27 @@ module.exports = (grunt) ->
           workerDir: "<%= config.dist %><%= config.base %>"
           maximumFileSizeToCacheInBytes: "<%= config.cfg.service_worker.max_size %>"
           staticFileGlobs: "<%= config.cfg.service_worker.files %>"
-          runtimeCaching: [{
-            urlPattern: "<%= config.cfg.file %>/img/comic/*.(png|webp)",
-            handler: 'cacheFirst',
-            options: {
-              cache: {
-                name: 'comic-cache'
-              }
-            }
-          }]
+
+    sri_hash:
+      options:
+        assetsDir: "<%= config.dist %>"
+
+      dist:
+        files: [
+          expand: true
+          cwd: "<%= config.dist %>"
+          src: "**/*.html"
+          dest: "<%= config.dist %>"
+        ]
+
+    doctype:
+      dist:
+        files: [
+          expand: true
+          cwd: "<%= config.dist %>"
+          src: "**/*.html"
+          dest: "<%= config.dist %>"
+        ]
 
     jekyll:
       options:
@@ -341,7 +377,7 @@ module.exports = (grunt) ->
         command: [
           "bundle update"
           "bundle install"
-          "npm install"
+          "yarn install"
         ].join("&&")
 
       amsf__theme__to_app:
@@ -370,6 +406,9 @@ module.exports = (grunt) ->
 
       amsf__release:
         command: "git checkout release && git pull && git merge master --no-edit && git push && git checkout master && git push"
+
+      move_flatten_base:
+        command: "mv <%= config.dist %><%= config.base %>/* <%= config.dist %>/"
 
     concurrent:
       options:
@@ -440,6 +479,15 @@ module.exports = (grunt) ->
               "!TODOS.md"
             ]
             dest: "./"
+          }
+          {
+            expand: true
+            dot: true
+            cwd: "<%= amsf.core %>/.circleci/"
+            src: [
+              "config.example.yml"
+            ]
+            dest: ".circleci/"
           }
           {
             expand: true
@@ -641,7 +689,7 @@ module.exports = (grunt) ->
   grunt.registerTask "serve", "Fire up a server on local machine for development", [
     "clean:main"
     "copy:serve"
-    "less:serve"
+    "sass:serve"
     "postcss:serve"
     "concurrent:serve"
   ]
@@ -658,22 +706,30 @@ module.exports = (grunt) ->
         "amsf-update"
       ]
 
+  grunt.registerTask "flatten_check", "Build site with jekyll", ->
+    if grunt.config.get(['config']).flatten_base
+      grunt.task.run [
+        "shell:move_flatten_base"
+      ]
+
   grunt.registerTask "build", "Build site with jekyll", [
     "clean:main"
     "coffeelint"
-    "uglify:dist"
-    "less:dist"
+    "terser:dist"
+    "sass:dist"
     "postcss:dist"
-    "csscomb"
     "jekyll:dist"
     "cssmin"
     "assets_inline"
     "uncss_inline"
-    "cacheBust"
     "concurrent:dist"
+    "cacheBust"
     "html_trim"
     "service_worker"
-    "uglify:sw"
+    "terser:sw"
+    "sri_hash:dist"
+    "doctype"
+    "flatten_check"
     "cleanempty"
   ]
 
