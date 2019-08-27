@@ -137,7 +137,7 @@ url:            https://sckctranslate.github.io
 # grabs the first image of your post as post featured image.
 #
 # Default:      https://d349cztnlupsuf.cloudfront.net
-file:           https://sckctranslate.github.io/ppgd/assets
+file:           https://cdn.jsdelivr.net/gh/sckctranslate/ppgd@master/assets
 
 # Download files URL
 #
