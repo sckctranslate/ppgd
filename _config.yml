@@ -48,7 +48,6 @@ kramdown:
 #
 # Plugins inside `jekyll_plugins` group in `Gemfile` will be actived by default
 plugins:
-  - jekyll-compress-images
   - jekyll-last-modified-at
 
 #
